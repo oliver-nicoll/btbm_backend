@@ -5,7 +5,7 @@ class Api::V1::MarketsController < ApplicationController
   def index
     @markets = Market.all
 
-    render json: @markets, include: :products
+    render json: @markets, only: [:id, :name, :description], include: :products
   end
 
  
