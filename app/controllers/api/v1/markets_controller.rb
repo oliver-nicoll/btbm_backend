@@ -5,7 +5,11 @@ class Api::V1::MarketsController < ApplicationController
   def index
     @markets = Market.all
 
-    render json: @markets, only: [:id, :name, :description], include: :products
+    render json: @markets, only: [:id, :name, :description], include: {
+      products: {
+          except: [:created_at, :updated_at]
+      }
+  }
   end
 
  
