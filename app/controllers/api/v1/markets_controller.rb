@@ -12,6 +12,17 @@ class Api::V1::MarketsController < ApplicationController
   }
   end
 
+  def create
+    @market = Market.new(market_params)
+
+    if @market.save
+      render json: @market, status: :created, location: @market
+    else
+      render json: @market.errors, status: :unprocessable_entity
+    end
+  end
+    
+
  
   
   private

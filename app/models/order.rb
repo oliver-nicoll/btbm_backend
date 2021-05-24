@@ -16,7 +16,6 @@ class Order < ApplicationRecord
     private
 
     def set_cart_total
-
         self[:order_subtotal] = subtotal
     end
 end
