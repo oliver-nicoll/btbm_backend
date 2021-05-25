@@ -5,20 +5,13 @@ class Api::V1::ProductsController < ApplicationController
   def index
     @products = Product.all
 
-    render json: @products, only: [:id, :name, :description], include: {
-      products: {
-          except: [:created_at, :updated_at]
-      }
-  }
+    render json: @products, except: [:created_at, :updated_at]
+  
   end
 
     # GET /products/1
   def show
-    render json: @product, only: [:name, :id], include: {
-      products: {
-        except: [:created_at, :updated_at]
-      }
-    }
+    render json: @products, except: [:created_at, :updated_at]
   end
 
   def create
@@ -69,7 +62,7 @@ class Api::V1::ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description)
+      params.require(:product).permit(:name, :description, :price, :image, :stock, :category)
     end
 
 end
