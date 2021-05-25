@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :description
       t.decimal :price
-      t.belongs_to :market, null: false, foreign_key: true
       t.integer :stock
 
       t.timestamps
