@@ -19,9 +19,9 @@ class Api::V1::OrdersController < ApplicationController
     if @order.save
       render json: {
         status: 201,
-        store: @order
+        order: @order
         }, status: :created
-       byebug
+      #  byebug
     else
       render json: {
           status: 422,

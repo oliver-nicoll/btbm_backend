@@ -3,7 +3,7 @@ class Order < ApplicationRecord
     has_many :products, through: :ordered_items
     # before_save :set_cart_total
 
-    validates :email, presence: true, uniqueness: true
+    validates :email, presence: true
 
     # def subtotal_order
     #     sum = 0
