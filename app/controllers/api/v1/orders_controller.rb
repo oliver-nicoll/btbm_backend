@@ -16,12 +16,12 @@ class Api::V1::OrdersController < ApplicationController
   # POST /orders
   def create
     @order = Order.new(order_params)
-
     if @order.save
       render json: {
-          status: 201,
-          store: @order
-      }, status: :created, location: api_v1_order_path(@order)
+        status: 201,
+        store: @order
+        }, status: :created
+       byebug
     else
       render json: {
           status: 422,
@@ -52,6 +52,6 @@ class Api::V1::OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:email, :order_number)
+      params.require(:order).permit(:email, :cart_array, :order_number)
     end
 end
