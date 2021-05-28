@@ -1,17 +1,21 @@
 class Api::V1::OrdersController < ApplicationController
-#   before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:show, :update, :destroy]
 
 #   # GET /orders
-#   def index
-#     @orders = Order.all
+  def index
+    @orders = Order.all
 
-#     render json: @orders
-#   end
+    render json: @orders
+  end
 
-#   # GET /orders/1
-#   def show
-#     render json: @order
-#   end
+  # GET /orders/1
+  def show
+    render json: @order, include: {
+      ordered_items: {
+        include: :product
+      } 
+    }
+  end
 
   # POST /orders
   def create
@@ -21,7 +25,6 @@ class Api::V1::OrdersController < ApplicationController
         status: 201,
         order: @order
         }, status: :created
-      #  byebug
     else
       render json: {
           status: 422,
@@ -52,6 +55,6 @@ class Api::V1::OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:email, :cart_array, :order_number)
+      params.require(:order).permit(:email, cart_array: [])
     end
 end
