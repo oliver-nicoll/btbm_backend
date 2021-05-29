@@ -8,11 +8,8 @@ class Order < ApplicationRecord
     def cart_array=(cart_array)
         #array of numbers - [1, 2, 4, 1, 2]
         cart_array.each do |product_id|
-            # byebug
+            
             if ordered_item = self.ordered_items.find{ |ordered_item| ordered_item.product_id == product_id }
-                # (product_id: product_id)
-                #add to the quantity of existing ordered_item
-                # ordered_item = self.ordered_items.find_by(product_id: product_id)
                 ordered_item.quantity += 1 
             else
                 #make a new ordered_item

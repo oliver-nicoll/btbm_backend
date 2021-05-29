@@ -2,11 +2,11 @@ class Api::V1::OrdersController < ApplicationController
   before_action :set_order, only: [:show, :update, :destroy]
 
 #   # GET /orders
-  def index
-    @orders = Order.all
+  # def index
+  #   @orders = Order.all
 
-    render json: @orders
-  end
+  #   render json: @orders
+  # end
 
   # GET /orders/1
   def show
